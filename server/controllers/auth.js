@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import { OAuth2Client } from "google-auth-library";
-
+import axios from "axios";
 import Users from "../models/users.js";
 
 import {
@@ -17,10 +17,16 @@ const verifyGoogleToken = async ({ code }) => {
   );
   try {
     const { tokens } = await oAuth2Client.getToken(code);
-    const res = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
-      headers: { Authorization: `Bearer ${tokens.access_token}` },
-    });
-    const user = await res.json();
+    // const res = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
+    //   headers: { Authorization: `Bearer ${tokens.access_token}` },
+    // });
+    const res = await axios.get(
+      "https://www.googleapis.com/oauth2/v3/userinfo",
+      {
+        headers: { Authorization: `Bearer ${tokens.access_token}` },
+      }
+    );
+    const user = res.data;
     const { refresh_token } = tokens;
 
     const { email, sub: googleId, name, picture: image } = user;
