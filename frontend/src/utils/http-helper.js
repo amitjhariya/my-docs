@@ -33,7 +33,7 @@ export const sendRequest = async (args) => {
       });
     }
     if (error.response.status === 401) {
-      forceLogout();
+      // forceLogout();
     }
     return { error };
   }
