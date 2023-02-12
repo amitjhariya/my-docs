@@ -6,7 +6,7 @@ import Files from "./Files";
 function Dashboard() {
 
   return (
-    <AdminLayout>
+    <AdminLayout title={"Dashboard"}>
       
       <Files/>
     </AdminLayout>

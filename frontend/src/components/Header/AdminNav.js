@@ -1,33 +1,28 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Logo from "./../../assets/logo.png";
 import { Link } from "react-router-dom";
 import { signOut } from "../../utils/user-helper.js";
-
-const navigation = [
-  { name: "Home", href: "/" },
-  { name: "Dashboard", href: "/dashboard", current: true },
-  { name: "Profile", href: "/Profile" },
-];
-const userNavigation = [
-  { name: "Your Profile", href: "#" },
-  { name: "Settings", href: "#" },
-  
-];
+import { userNavigation,navigation } from "../../constants";
+import { useLocation } from "react-router-dom";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 function AdminNav() {
-  const [user,setUser]=useState({})
+  const [user, setUser] = useState({});
   useEffect(() => {
     const user_info = localStorage.getItem("user");
     // console.log(user_info)
-    setUser(JSON.parse(user_info))
+    setUser(JSON.parse(user_info));
   }, []);
+  const location = useLocation();
+  const active = location.pathname
+  console.log(active)
+
 
   return (
     <>
@@ -47,14 +42,14 @@ function AdminNav() {
                       {navigation.map((item) => (
                         <Link
                           key={item.name}
-                          href={item.href}
+                          to={item.to}
                           className={classNames(
-                            item.current
+                            item.to===active
                               ? "bg-gray-900 text-white"
                               : "text-gray-300 hover:bg-gray-700 hover:text-white",
                             "px-3 py-2 rounded-md text-sm font-medium"
                           )}
-                          aria-current={item.current ? "page" : undefined}
+                          aria-current={item.to===active ? "page" : undefined}
                         >
                           {item.name}
                         </Link>
@@ -107,21 +102,23 @@ function AdminNav() {
                                   {item.name}
                                 </Link>
                               )}
-                              
                             </Menu.Item>
-
                           ))}
-                          <Menu.Item onClick={()=>{
-                            signOut()
-                            localStorage.removeItem('user')
-                          }}>
-                              <Link
-                              to={'#'}
-                              className={'block px-4 py-2 text-sm text-gray-700'}
+                          <Menu.Item
+                            onClick={() => {
+                              signOut();
+                              localStorage.removeItem("user");
+                            }}
+                          >
+                            <Link
+                              to={"#"}
+                              className={
+                                "block px-4 py-2 text-sm text-gray-700"
+                              }
                             >
                               Sign Out
                             </Link>
-                            </Menu.Item>
+                          </Menu.Item>
                         </Menu.Items>
                       </Transition>
                     </Menu>
@@ -147,7 +144,7 @@ function AdminNav() {
                   <Disclosure.Button
                     key={item.name}
                     as="a"
-                    href={item.href}
+                    to={item.to}
                     className={classNames(
                       item.current
                         ? "bg-gray-900 text-white"
@@ -187,14 +184,14 @@ function AdminNav() {
                 </div>
                 <div className="mt-3 space-y-1 px-2">
                   {userNavigation.map((item) => (
-                    <Disclosure.Button
+                    <Link
                       key={item.name}
                       as="a"
-                      href={item.href}
+                      to={item.to}
                       className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                     >
                       {item.name}
-                    </Disclosure.Button>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -203,13 +200,13 @@ function AdminNav() {
         )}
       </Disclosure>
 
-      <header className="bg-white shadow">
+      {/* <header className="bg-white shadow">
         <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-            Dashboard
+            Das
           </h1>
         </div>
-      </header>
+      </header> */}
     </>
   );
 }

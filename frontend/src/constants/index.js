@@ -11,3 +11,13 @@ export const GET_SEARCH_DOCUMENTS_URL = `${BASE_URL}/documents/search`;
 export const LOGIN_URL = `${BASE_URL}/auth/login`
 
 export const LOGOUT_URL = `${BASE_URL}/auth/logout`;
+
+export const navigation = [
+    { name: "Home", to: "/" },
+    { name: "Dashboard", to: "/dashboard", current: true },
+    { name: "Profile", to: "/profile" },
+  ];
+ export  const userNavigation = [
+    { name: "Your Profile", to: "/profile" },
+    { name: "Settings", to: "#" },
+  ];
