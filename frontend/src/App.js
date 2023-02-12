@@ -1,19 +1,18 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import Layout from "./components/Layout";
-import Home from "./components/Home";
 import Dashboard from "./components/Dashboard";
 import PrivateRoute from "./routes/PrivateRoute.js";
+import Hero from "./components/Home/Hero";
+import Docs from "./components/Dashboard/Dashboard";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route element={<PrivateRoute />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-          </Route>
+        <Route index path="/" element={<Hero />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/dashboard2" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Docs />} />
         </Route>
       </Routes>
     </>

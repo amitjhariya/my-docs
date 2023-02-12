@@ -1,26 +1,27 @@
-import { GrDocumentPdf } from "react-icons/gr";
-import { AiOutlineFileJpg } from "react-icons/ai";
-import { FcDocument } from "react-icons/fc";
-import {BsCardImage} from 'react-icons/bs'
-import { BsTextCenter } from "react-icons/bs";
+import PDF from '../../assets/pdf.png'
+import IMAGE from '../../assets/image.png'
+import DOC from '../../assets/doc.png'
+// import XLS from '../../assets/xls.png'
+import TXT from '../../assets/xls.png'
+
 
 const getIcon = (type) => {
   // console.log(type);
   if (type === "image/jpeg") {
-    return <AiOutlineFileJpg className="icon" />;
-  }
-  if (type === "image/png") {
-    return <BsCardImage className="icon" />;
+    return IMAGE;
   }
 
+  if (type === "image/png") {
+    return IMAGE;
+  }
   if (type === "application/pdf") {
-    return <GrDocumentPdf className="icon"  />;
+    return PDF;
   }
   if (type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
-    return <FcDocument  className="icon" />;
+    return DOC;
   }
   if(type==='text/plain'){
-    return <BsTextCenter  className="icon" />;
+    return TXT;
   }
 };
 

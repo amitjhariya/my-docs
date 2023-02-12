@@ -1,17 +1,13 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
-import Footer from "../Footer";
-import Header from "../Header";
+import Nav from "../Header/Nav";
 
-
-function Layout() {
+function Layout({children}) {
   return (
     <>
-      <Header />
-      <main>
-        <Outlet />
-      </main>
-      <Footer />
+      <div className="isolate bg-white">
+        <Nav/>
+        {children}
+      </div>
     </>
   );
 }

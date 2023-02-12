@@ -1,3 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
 header {
   height: 100px;
 }
@@ -138,4 +143,4 @@ footer {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
+} */
