@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { signOut } from "../../utils/user-helper.js";
 import { userNavigation,navigation } from "../../constants";
 import { useLocation } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -21,7 +22,6 @@ function AdminNav() {
   }, []);
   const location = useLocation();
   const active = location.pathname
-  console.log(active)
 
 
   return (
@@ -91,11 +91,11 @@ function AdminNav() {
                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                           {userNavigation.map((item) => (
                             <Menu.Item key={item.name}>
-                              {({ active }) => (
+                              {({  }) => (
                                 <Link
-                                  to={item.href}
+                                  to={item.to}
                                   className={classNames(
-                                    active ? "bg-gray-100" : "",
+                                    item.to===active ? "bg-gray-100" : "",
                                     "block px-4 py-2 text-sm text-gray-700"
                                   )}
                                 >
@@ -141,20 +141,20 @@ function AdminNav() {
             <Disclosure.Panel className="md:hidden">
               <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
                 {navigation.map((item) => (
-                  <Disclosure.Button
+                  <Link
                     key={item.name}
                     as="a"
                     to={item.to}
                     className={classNames(
-                      item.current
+                      item.to===active
                         ? "bg-gray-900 text-white"
                         : "text-gray-300 hover:bg-gray-700 hover:text-white",
                       "block px-3 py-2 rounded-md text-base font-medium"
                     )}
-                    aria-current={item.current ? "page" : undefined}
+                    aria-current={item.to===active? "page" : undefined}
                   >
                     {item.name}
-                  </Disclosure.Button>
+                  </Link>
                 ))}
               </div>
               <div className="border-t border-gray-700 pt-4 pb-3">
@@ -207,6 +207,7 @@ function AdminNav() {
           </h1>
         </div>
       </header> */}
+      <ToastContainer/>
     </>
   );
 }
