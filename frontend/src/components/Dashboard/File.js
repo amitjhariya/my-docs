@@ -8,6 +8,7 @@ import {
   getDocument,
 } from "../../services/documents-api-service";
 import { toast } from "react-toastify";
+import Modal from "./Modal";
 
 function File({ file, files, setFiles }) {
   const [loading,setLoading]=useState(false)
@@ -67,6 +68,7 @@ function File({ file, files, setFiles }) {
           
         </div>
       </div>
+      {/* <Modal isOpen={true} /> */}
     </div>
   );
 }
