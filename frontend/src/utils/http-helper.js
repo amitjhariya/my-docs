@@ -63,7 +63,8 @@ export const postRequest = async (args) => {
   console.log(args.headers)
   const { data, headers, error, status } = await sendRequest({
     ...args,
-    method: 'post'
+    method: 'post',
+    onUploadProgress: args.onUploadProgress
   });
   if ([200, 201, 204].indexOf(status) > -1) {
     return {

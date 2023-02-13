@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+.text-truncate {
+  overflow: hidden;
+  max-width: 75ch;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 /* 
 header {
   height: 100px;

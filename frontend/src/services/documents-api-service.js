@@ -11,12 +11,12 @@ export const getAllDocuments = async (data) => {
   });
 };
 
-export const addDocuments = async (data) => {
+export const addDocuments = async (data,onUploadProgress) => {
   return await postRequest({
     url: GET_ALL_DOCUMENTS_URL,
     data: data,
     headers: { "Content-Type": "multipart/form-data" },
-
+    onUploadProgress: onUploadProgress
   });
 };
 
