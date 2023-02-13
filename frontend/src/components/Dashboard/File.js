@@ -8,16 +8,17 @@ import {
   getDocument,
 } from "../../services/documents-api-service";
 import { toast } from "react-toastify";
-import Modal from "./Modal";
+// import Modal from "./Modal";
 
 function File({ file, files, setFiles }) {
-  const [loading,setLoading]=useState(false)
+  const [loading, setLoading] = useState(false);
+  const [open,setOpen]=useState(false)
   const deleteFile = async (id) => {
     try {
-      setLoading(true)
+      setLoading(true);
       const response = await deleteDocument(id);
       if (response.data.success) {
-        setLoading(false)
+        setLoading(false);
         toast.success("File Deleted !", {
           autoClose: 500,
           position: toast.POSITION.TOP_RIGHT,
@@ -44,12 +45,13 @@ function File({ file, files, setFiles }) {
     }
   };
   return (
-    <div className="group relative mx-auto">
-      <div className="h-40 aspect-w-1 aspect-h-1 w-32 overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-40">
+    <div className="group relative mx-auto" >
+      <div  className="h-40 aspect-w-1 aspect-h-1 w-32 overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-40">
         <img
           src={getIcon(file.contentType)}
           alt={file.title}
           className="h-[60px] w-[60px] object-cover object-center mt-16 mx-auto "
+          // onClick={()=>{setOpen(true)}}
         />
         <div className="w-[90%] absolute top-2 mx-2">
           <p className="text-xs text-gray-700 text-truncate">{file.title}</p>
@@ -60,15 +62,18 @@ function File({ file, files, setFiles }) {
             onClick={downloadFile}
             aria-hidden="true"
           />
-          {loading ?<FaSpinner className="animate-spin"/>: <HiOutlineTrash
-            className="h-4 w-4 "
-            onClick={() => deleteFile(file._id)}
-            aria-hidden="true"
-          /> }
-          
+          {loading ? (
+            <FaSpinner className="animate-spin" />
+          ) : (
+            <HiOutlineTrash
+              className="h-4 w-4 "
+              onClick={() => deleteFile(file._id)}
+              aria-hidden="true"
+            />
+          )}
         </div>
       </div>
-      {/* <Modal isOpen={true} /> */}
+      {/* <Modal open={open} setOpen={setOpen} file={file} /> */}
     </div>
   );
 }

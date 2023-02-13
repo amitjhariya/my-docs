@@ -21,3 +21,12 @@ export const navigation = [
     { name: "Your Profile", to: "/profile" },
     { name: "Settings", to: "#" },
   ];
+
+export const ALLOWED_TYPES = [
+  'image/jpeg',
+  'image/png',
+  'application/pdf',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  'text/plain',
+  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+];
